@@ -1,5 +1,4 @@
 linters:
-  disable-all: true
   enable:
     - copyloopvar
     - gofmt
@@ -7,6 +6,7 @@ linters:
     - gosec
     - revive
     - unused
+  disable-all: false
   disable:
     - exportloopref
   presets:
