@@ -1,0 +1,16 @@
+linters:
+  disable-all: true
+  enable:
+    - copyloopvar
+    - gofmt
+    - govet
+    - gosec
+    - revive
+    - unused
+  disable:
+    - exportloopref
+  presets:
+    - bugs
+    - performance
+    - unused
+  fast: false
