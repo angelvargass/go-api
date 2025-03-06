@@ -1,19 +1,24 @@
 name: goreleaser
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - '*'
 
 permissions:
   contents: write
+  packages: write
+
+env:
+  IMAGE_NAME: go-api
 
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
       -
-        name: Checkout
+        name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -31,3 +36,31 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
+  
+  build-and-push-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: metadata
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.metadata.outputs.tags }}
