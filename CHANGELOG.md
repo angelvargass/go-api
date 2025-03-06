@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/angelvargass/go-api/compare/v1.0.0...v1.1.0) (2025-03-06)
+
+
+### Features
+
+* first gin route ([#9](https://github.com/angelvargass/go-api/issues/9)) ([be8e033](https://github.com/angelvargass/go-api/commit/be8e033cb9e61bcb07835aabce2757fb857d66ad))
+
 ## 1.0.0 (2025-03-05)
 
 
