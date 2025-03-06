@@ -38,6 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
   
   build-and-push-image:
+    needs: goreleaser
     runs-on: ubuntu-latest
 
     steps:
