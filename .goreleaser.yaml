@@ -3,7 +3,8 @@ version: 2
 project_name: go-api
 
 builds:
-  - env:
+  - main: ./cmd/
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
