@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  validate:
+  validate-commits:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
