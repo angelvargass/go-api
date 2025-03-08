@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/angelvargass/go-api/compare/v1.1.0...v1.2.0) (2025-03-08)
+
+
+### Features
+
+* logging ([#11](https://github.com/angelvargass/go-api/issues/11)) ([d9eea0e](https://github.com/angelvargass/go-api/commit/d9eea0ef7263b9d36280f68027706f63d3b9bcf7))
+
 ## [1.1.0](https://github.com/angelvargass/go-api/compare/v1.0.0...v1.1.0) (2025-03-06)
 
 
