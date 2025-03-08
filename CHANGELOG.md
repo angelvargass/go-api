@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/angelvargass/go-api/compare/v1.2.0...v1.2.1) (2025-03-08)
+
+
+### Bug Fixes
+
+* fixed dockerfile build ([#13](https://github.com/angelvargass/go-api/issues/13)) ([c89e4a0](https://github.com/angelvargass/go-api/commit/c89e4a079dc26c60c7ab05fa4b876be8e2588839))
+
 ## [1.2.0](https://github.com/angelvargass/go-api/compare/v1.1.0...v1.2.0) (2025-03-08)
 
 
