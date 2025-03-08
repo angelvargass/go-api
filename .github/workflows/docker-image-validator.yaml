@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  docker:
+  validate-docker-build:
     runs-on: ubuntu-latest
     steps:
       - name: Log in to Docker Hub

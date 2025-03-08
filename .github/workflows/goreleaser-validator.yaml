@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  goreleaser:
+  validate-goreleaser-build:
     runs-on: ubuntu-latest
     steps:
       -
