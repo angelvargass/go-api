@@ -26,6 +26,6 @@ jobs:
         with:
           distribution: goreleaser
           version: '~> v2'
-          args: release --auto-snapshot
+          args: release --snapshot
         env:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
