@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -12,11 +11,11 @@ import (
 	"github.com/angelvargass/go-api/internal/logger"
 	"github.com/angelvargass/go-api/internal/routing"
 	"github.com/angelvargass/go-api/internal/utils"
+	"github.com/jackc/pgx/v5"
 )
 
 func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	fmt.Println(ctx)
 	defer stop()
 
 	config, err := config.New()
@@ -29,8 +28,13 @@ func main() {
 	logger := logger.New(config.LogLevel, logFile)
 	slog.SetDefault(logger)
 
+	slog.Info("connecting to database")
+	conn, err := pgx.Connect(ctx, config.DatabaseURL)
+	utils.HandleError(logger, "error connecting to database", err)
+	defer conn.Close(ctx)
+
 	slog.Info("creating routing instance")
-	routing := routing.New(logger, logFile)
+	routing := routing.New(ctx, logger, logFile, conn)
 
 	slog.Info("initializing Gin routes")
 	routing.InitRoutes()
