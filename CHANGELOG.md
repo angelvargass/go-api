@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/angelvargass/go-api/compare/v1.2.1...v1.3.0) (2025-03-11)
+
+
+### Features
+
+* routing and db connection ([#16](https://github.com/angelvargass/go-api/issues/16)) ([fff2905](https://github.com/angelvargass/go-api/commit/fff29054f682fd09b8bcf3d676bd4d4ca9c3a7bc))
+
 ## [1.2.1](https://github.com/angelvargass/go-api/compare/v1.2.0...v1.2.1) (2025-03-08)
 
 
