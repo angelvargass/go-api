@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"io"
 	"log/slog"
 	"os"
 	"strings"
@@ -27,6 +28,6 @@ func New(logLevel string, logFile *os.File) *slog.Logger {
 		Level: level,
 	}
 
-	logger := slog.New(slog.NewJSONHandler(logFile, cfg))
+	logger := slog.New(slog.NewJSONHandler(io.MultiWriter(logFile, os.Stdout), cfg))
 	return logger
 }
