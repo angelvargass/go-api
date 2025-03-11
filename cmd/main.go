@@ -1,18 +1,23 @@
 package main
 
 import (
+	"context"
 	"log/slog"
-	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/angelvargass/go-api/internal/config"
 	"github.com/angelvargass/go-api/internal/logger"
-	"github.com/angelvargass/go-api/internal/middleware"
+	"github.com/angelvargass/go-api/internal/routing"
 	"github.com/angelvargass/go-api/internal/utils"
-	"github.com/gin-gonic/gin"
+	"github.com/jackc/pgx/v5"
 )
 
 func main() {
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
 	config, err := config.New()
 	utils.HandleError(slog.Default(), "error instanciating config instance", err)
 
@@ -23,25 +28,18 @@ func main() {
 	logger := logger.New(config.LogLevel, logFile)
 	slog.SetDefault(logger)
 
-	slog.Info("creating gin instance")
-	r := InitGinInstance(logFile)
+	slog.Info("connecting to database")
+	conn, err := pgx.Connect(ctx, config.DatabaseURL)
+	utils.HandleError(logger, "error connecting to database", err)
+	defer conn.Close(ctx)
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+	slog.Info("creating routing instance")
+	routing := routing.New(ctx, logger, logFile, conn)
 
-	err = r.Run()
-	if err != nil {
-		slog.Error(err.Error())
-	}
-}
+	slog.Info("initializing Gin routes")
+	routing.InitRoutes()
 
-func InitGinInstance(logFile *os.File) *gin.Engine {
-	r := gin.New()
-	r.Use(gin.Recovery())
-	r.Use(middleware.JSONLoggerMiddleware())
-	r.Use(middleware.JSONLoggerWriter(logFile))
-	return r
+	slog.Info("initializing Gin server")
+	err = routing.Engine.Run()
+	utils.HandleError(logger, "error initializing gin engine", err)
 }
