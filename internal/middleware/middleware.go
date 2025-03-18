@@ -8,6 +8,7 @@ import (
 
 	"github.com/angelvargass/go-api/internal/utils"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 func formatLogEntry(params gin.LogFormatterParams) string {
@@ -20,18 +21,11 @@ func formatLogEntry(params gin.LogFormatterParams) string {
 	log["start_time"] = params.TimeStamp
 	log["remote_addr"] = params.ClientIP
 	log["response_time"] = params.Latency.String()
+	log["request_id"] = uuid.New()
 
 	s, err := json.Marshal(log)
 	utils.HandleError(slog.Default(), "error marshalling log entry", err)
 	return string(s) + "\n"
-}
-
-func JSONLoggerMiddleware() gin.HandlerFunc {
-	return gin.LoggerWithFormatter(
-		func(params gin.LogFormatterParams) string {
-			return formatLogEntry(params)
-		},
-	)
 }
 
 func JSONLoggerWriter(logFile *os.File) gin.HandlerFunc {
