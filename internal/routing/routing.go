@@ -10,23 +10,23 @@ import (
 	"github.com/angelvargass/go-api/internal/ping"
 	"github.com/angelvargass/go-api/internal/sample"
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-func New(ctx context.Context, logger *slog.Logger, logFile *os.File, conn *pgx.Conn) *Routing {
+func New(ctx context.Context, logger *slog.Logger, logFile *os.File, pool *pgxpool.Pool) *Routing {
 	return &Routing{
 		ctx:    ctx,
 		Engine: initGinInstance(logFile),
 		Logger: logger,
-		DBConn: conn,
+		DBConn: pool,
 	}
 }
 
 func initGinInstance(logFile *os.File) *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Recovery())
-	r.Use(middleware.JSONLoggerMiddleware())
-	r.Use(middleware.JSONLoggerWriter(logFile))
+	r.Use(middleware.RequestIDMiddleware())
+	r.Use(middleware.JSONLogger(logFile))
 	return r
 }
 

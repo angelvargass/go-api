@@ -4,12 +4,12 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Instance struct {
 	ctx    context.Context
-	dbConn *pgx.Conn
+	dbConn *pgxpool.Pool
 	Logger *slog.Logger
 }
 

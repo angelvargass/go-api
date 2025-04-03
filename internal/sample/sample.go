@@ -8,13 +8,14 @@ import (
 	"github.com/angelvargass/go-api/internal/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 const (
 	SampleTableName = "sample"
 )
 
-func New(ctx context.Context, dbConn *pgx.Conn, logger *slog.Logger) *Instance {
+func New(ctx context.Context, dbConn *pgxpool.Pool, logger *slog.Logger) *Instance {
 	return &Instance{
 		ctx:    ctx,
 		dbConn: dbConn,

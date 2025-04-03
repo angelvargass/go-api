@@ -7,8 +7,6 @@ linters:
     - revive
     - unused
   disable-all: false
-  disable:
-    - exportloopref
   presets:
     - bugs
     - performance
