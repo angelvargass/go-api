@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/angelvargass/go-api/compare/v1.4.0...v1.4.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* bump github.com/jackc/pgx/v5 from 5.7.2 to 5.7.4 ([#21](https://github.com/angelvargass/go-api/issues/21)) ([ad3e9a5](https://github.com/angelvargass/go-api/commit/ad3e9a5538b3ab90ff7481da44841d22eb15b3fb))
+
 ## [1.4.0](https://github.com/angelvargass/go-api/compare/v1.3.0...v1.4.0) (2025-04-03)
 
 
