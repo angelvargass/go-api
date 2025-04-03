@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/angelvargass/go-api/compare/v1.3.0...v1.4.0) (2025-04-03)
+
+
+### Features
+
+* uuid for each api request and db connection pooling ([#18](https://github.com/angelvargass/go-api/issues/18)) ([a9c9583](https://github.com/angelvargass/go-api/commit/a9c9583163a06f0bf56e83e06df05a68f681602f))
+
 ## [1.3.0](https://github.com/angelvargass/go-api/compare/v1.2.1...v1.3.0) (2025-03-11)
 
 
