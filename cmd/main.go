@@ -8,10 +8,10 @@ import (
 	"syscall"
 
 	"github.com/angelvargass/go-api/internal/config"
+	"github.com/angelvargass/go-api/internal/db"
 	"github.com/angelvargass/go-api/internal/logger"
 	"github.com/angelvargass/go-api/internal/routing"
 	"github.com/angelvargass/go-api/internal/utils"
-	"github.com/jackc/pgx/v5"
 )
 
 func main() {
@@ -28,13 +28,14 @@ func main() {
 	logger := logger.New(config.LogLevel, logFile)
 	slog.SetDefault(logger)
 
-	slog.Info("connecting to database")
-	conn, err := pgx.Connect(ctx, config.DatabaseURL)
-	utils.HandleError(logger, "error connecting to database", err)
-	defer conn.Close(ctx)
+	slog.Info("creating database pool")
+	dbPool, err := db.New(ctx, &config.DBConfig)
+	utils.HandleError(logger, "failed to create database connection pool", err)
+
+	defer dbPool.Close()
 
 	slog.Info("creating routing instance")
-	routing := routing.New(ctx, logger, logFile, conn)
+	routing := routing.New(ctx, logger, logFile, dbPool)
 
 	slog.Info("initializing Gin routes")
 	routing.InitRoutes()
