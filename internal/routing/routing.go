@@ -25,7 +25,8 @@ func New(ctx context.Context, logger *slog.Logger, logFile *os.File, conn *pgx.C
 func initGinInstance(logFile *os.File) *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Recovery())
-	r.Use(middleware.JSONLoggerWriter(logFile))
+	r.Use(middleware.RequestIDMiddleware())
+	r.Use(middleware.JSONLogger(logFile))
 	return r
 }
 
