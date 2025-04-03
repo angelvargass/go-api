@@ -11,3 +11,9 @@ updates:
       prefix: "fix: "
     schedule:
       interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: ".github/workflows"
+    commit-message:
+      prefix: "chore: "
+    schedule:
+      interval: "weekly"
