@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/angelvargass/go-api/compare/v1.4.1...v1.4.2) (2025-04-16)
+
+
+### Bug Fixes
+
+* bump golang.org/x/net from 0.37.0 to 0.38.0 ([#29](https://github.com/angelvargass/go-api/issues/29)) ([db0f67f](https://github.com/angelvargass/go-api/commit/db0f67fec624427b9ba196fe337996ab31cfa3a7))
+
 ## [1.4.1](https://github.com/angelvargass/go-api/compare/v1.4.0...v1.4.1) (2025-04-03)
 
 
