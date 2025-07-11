@@ -1,4 +1,4 @@
-name: Test Goreleaser build
+name: test-goreleaser-build
 
 on:
   pull_request:

@@ -1,7 +1,19 @@
-name: goreleaser
+name: goreleaser and deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      trigger-goreleaser:
+        description: 'Trigger GoReleaser build'
+        required: true
+        type: boolean
+        default: true
+      
+      trigger-docker-build-scan-release:
+        description: 'Trigger Docker build, scan, and release'
+        required: true
+        type: boolean
+        default: true
   push:
     tags:
       - '*'
@@ -12,6 +24,7 @@ permissions:
 
 jobs:
   goreleaser:
+    if: ${{ github.event.inputs.trigger-goreleaser == 'true' }} || github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
       -
@@ -35,6 +48,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
   
   build-scan-push:
+    if: ${{ github.event.inputs.trigger-docker-build-scan-release == 'true' }} || github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1.0.0
     with:
       registry: docker.io
