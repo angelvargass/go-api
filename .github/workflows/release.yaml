@@ -37,31 +37,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
   
-  build-and-push-image:
-    needs: goreleaser
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: metadata
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=semver,pattern={{version}}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.metadata.outputs.tags }}
+  build-scan-push:
+    uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1
+    with:
+      registry: docker.io
+      image_name: ${{ env.IMAGE_NAME }}
+      image_tag: ${{ github.ref_name }}
+      dockerfile_path: '.'
+    secrets:
+      docker_username: ${{ vars.DOCKERHUB_USERNAME }}
+      docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
