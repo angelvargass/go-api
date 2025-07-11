@@ -8,7 +8,7 @@ jobs:
   call-workflow-passing-data:
     uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@docker-build-scan-push
     with:
-      registry: hub.docker.com
+      registry: docker.io
       image_name: go-api
       image_tag: test
       dockerfile_path: .
