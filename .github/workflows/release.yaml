@@ -1,4 +1,4 @@
-name: goreleaser and deploy
+name: goreleaser-and-deploy
 
 on:
   workflow_dispatch:
