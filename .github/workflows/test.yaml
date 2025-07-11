@@ -1,0 +1,17 @@
+name: test reusable workflow
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - '*'
+jobs:
+  call-workflow-passing-data:
+    uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@docker-build-scan-push
+    with:
+      registry: hub.docker.com
+      image_name: go-api
+      image_tag: test
+      dockerfile_path: .
+    secrets:
+      docker_username: ${{ vars.DOCKERHUB_USERNAME }}
+      docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
