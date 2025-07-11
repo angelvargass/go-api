@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
   
   build-scan-push:
-    uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1
+    uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1.0.0
     with:
       registry: docker.io
       image_name: 'go-api'
