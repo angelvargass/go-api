@@ -1,4 +1,4 @@
-name: Test Docker image build
+name: test-scan-docker-image
 
 on:
   pull_request:
