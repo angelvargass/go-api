@@ -18,7 +18,7 @@ jobs:
     uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1
     with:
       registry: docker.io
-      image_name: ${{ env.IMAGE_NAME }}
+      image_name: 'test'
       image_tag: ${{ github.event.pull_request.head.sha }}
       dockerfile_path: '.'
       push: 'false'
