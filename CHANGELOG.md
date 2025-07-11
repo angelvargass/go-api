@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.2](https://github.com/angelvargass/go-api/compare/v1.4.1...v1.4.2) (2025-07-11)
+
+
+### Bug Fixes
+
+* bump github.com/gin-gonic/gin from 1.10.0 to 1.10.1 ([#33](https://github.com/angelvargass/go-api/issues/33)) ([3a847eb](https://github.com/angelvargass/go-api/commit/3a847eb834a4795b9406ae5494d97e1d6142ea33))
+* bump github.com/jackc/pgx/v5 from 5.7.4 to 5.7.5 ([#32](https://github.com/angelvargass/go-api/issues/32)) ([478e1d0](https://github.com/angelvargass/go-api/commit/478e1d08d031e93cd0d19347785b5b1c74aff814))
+* bump golang.org/x/net from 0.37.0 to 0.38.0 ([#29](https://github.com/angelvargass/go-api/issues/29)) ([db0f67f](https://github.com/angelvargass/go-api/commit/db0f67fec624427b9ba196fe337996ab31cfa3a7))
+
 ## [1.4.1](https://github.com/angelvargass/go-api/compare/v1.4.0...v1.4.1) (2025-04-03)
 
 
