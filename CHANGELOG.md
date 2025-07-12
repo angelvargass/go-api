@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/angelvargass/go-api/compare/v1.4.2...v1.4.2) (2025-07-12)
+
+
+### Miscellaneous Chores
+
+* release 1.4.2 ([fec2a4c](https://github.com/angelvargass/go-api/commit/fec2a4cdad0ea618e754db971096ed3d23f56c0c))
+
 ## [1.4.2](https://github.com/angelvargass/go-api/compare/v1.4.1...v1.4.2) (2025-07-11)
 
 
