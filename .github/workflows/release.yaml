@@ -49,7 +49,7 @@ jobs:
   
   build-scan-push:
     if: ${{ github.event.inputs.trigger-docker-build-scan-release == 'true' }} || github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1.0.0
+    uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1.1.4
     with:
       registry: docker.io
       image_name: 'go-api'
