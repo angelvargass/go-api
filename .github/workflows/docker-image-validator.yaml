@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-scan-push:
-    uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1.0.0
+    uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1
     with:
       registry: docker.io
       image_name: 'test'
