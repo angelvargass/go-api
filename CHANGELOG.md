@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/angelvargass/go-api/compare/v1.4.2...v1.5.0) (2025-07-15)
+
+
+### Features
+
+* add health endpoint ([#45](https://github.com/angelvargass/go-api/issues/45)) ([b1e1144](https://github.com/angelvargass/go-api/commit/b1e1144324f5db4e375619b7811a8883f55c0fe1))
+
 ## [1.4.2](https://github.com/angelvargass/go-api/compare/v1.4.1...v1.4.2) (2025-07-12)
 
 ### Bug Fixes
