@@ -14,6 +14,12 @@ on:
         required: true
         type: boolean
         default: true
+
+      with-tag-version:
+        description: 'Tag to use for the release'
+        required: false
+        type: string
+        default: echo $(git describe --tags --abbrev=0)
   push:
     tags:
       - '*'
