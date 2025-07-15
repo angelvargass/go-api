@@ -1,15 +1,5 @@
 name: scan-sonarqube
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - 'Dockerfile'
-      - '.golangci.yaml'
-      - 'cmd/**'
-      - 'pkg/**'
-      - 'internal/**'
-      
+on:   
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
