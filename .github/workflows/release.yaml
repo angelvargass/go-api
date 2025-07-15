@@ -24,7 +24,7 @@ permissions:
 
 jobs:
   goreleaser:
-    if: ${{ github.event.inputs.trigger-goreleaser == 'true' }} || github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    if: inputs.trigger-goreleaser || github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
       -
@@ -48,7 +48,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
   
   build-scan-push:
-    if: ${{ github.event.inputs.trigger-docker-build-scan-release == 'true' }} || github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    if: inputs.trigger-docker-build-scan-release || github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     uses: angelvargass/reusable-workflows/.github/workflows/reusable-docker-build-scan-push.yaml@v1
     with:
       registry: docker.io
