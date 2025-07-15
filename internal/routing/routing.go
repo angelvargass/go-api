@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"os"
 
+	"github.com/angelvargass/go-api/internal/health"
 	"github.com/angelvargass/go-api/internal/middleware"
 	"github.com/angelvargass/go-api/internal/ping"
 	"github.com/angelvargass/go-api/internal/sample"
@@ -35,6 +36,11 @@ func (r *Routing) InitRoutes() {
 	sampleInstance := sample.New(r.ctx, r.DBConn, r.Logger)
 
 	v1 := r.Engine.Group("/v1")
+
+	healthRoute := v1.Group("/healthz")
+	{
+		healthRoute.GET("", health.Health)
+	}
 
 	pingRoutes := v1.Group("/ping")
 	{
