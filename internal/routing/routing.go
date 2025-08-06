@@ -12,6 +12,7 @@ import (
 	"github.com/angelvargass/go-api/internal/sample"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func New(ctx context.Context, logger *slog.Logger, logFile *os.File, pool *pgxpool.Pool) *Routing {
@@ -36,6 +37,11 @@ func (r *Routing) InitRoutes() {
 	sampleInstance := sample.New(r.ctx, r.DBConn, r.Logger)
 
 	v1 := r.Engine.Group("/v1")
+
+	metricsRoute := v1.Group("/metrics")
+	{
+		metricsRoute.GET("", gin.WrapH(promhttp.Handler()))
+	}
 
 	healthRoute := v1.Group("/healthz")
 	{
