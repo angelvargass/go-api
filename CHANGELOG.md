@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/angelvargass/go-api/compare/v1.5.0...v1.6.0) (2025-08-06)
+
+
+### Features
+
+* prometheus metrics ([#50](https://github.com/angelvargass/go-api/issues/50)) ([fded00f](https://github.com/angelvargass/go-api/commit/fded00f40df353e60e962009c2147373e1ed9c67))
+
 ## [1.5.0](https://github.com/angelvargass/go-api/compare/v1.4.2...v1.5.0) (2025-07-15)
 
 
